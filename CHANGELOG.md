@@ -1,3 +1,4 @@
+
 ### Release 3.0.0 (August 20, 2020)
 This is a public and generally available(GA) release of the driver, and this version can be used in production applications.
 
