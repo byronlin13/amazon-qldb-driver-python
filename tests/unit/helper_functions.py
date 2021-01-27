@@ -40,16 +40,22 @@ def assert_query_stats(class_instance, buffered_cursor, read_ios_assert, write_i
     Asserts the query statistics returned by the cursor.
     """
     consumed_ios = buffered_cursor.get_consumed_ios()
-    class_instance.assertIsNotNone(consumed_ios)
-    read_ios = consumed_ios.get('ReadIOs')
+    if read_ios_assert is not None:
+        class_instance.assertIsNotNone(consumed_ios)
+        read_ios = consumed_ios.get('ReadIOs')
 
-    class_instance.assertEqual(read_ios, read_ios_assert)
+        class_instance.assertEqual(read_ios, read_ios_assert)
+    else:
+        class_instance.assertEqual(consumed_ios, None)
 
     timing_information = buffered_cursor.get_timing_information()
-    class_instance.assertIsNotNone(timing_information)
-    processing_time_milliseconds = timing_information.get('ProcessingTimeMilliseconds')
+    if timing_information_assert is not None:
+        class_instance.assertIsNotNone(timing_information)
+        processing_time_milliseconds = timing_information.get('ProcessingTimeMilliseconds')
 
-    class_instance.assertEqual(processing_time_milliseconds, timing_information_assert)
+        class_instance.assertEqual(processing_time_milliseconds, timing_information_assert)
+    else:
+        class_instance.assertEqual(timing_information_assert, None)
 
 
 def create_stream_cursor(mock_session, mock_statement_result_execute, mock_statement_result_fetch):

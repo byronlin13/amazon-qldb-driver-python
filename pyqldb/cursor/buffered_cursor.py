@@ -42,7 +42,7 @@ class BufferedCursor:
         """
         Return a dictionary containing the total amount of IO requests for a statement's execution.
 
-        :rtype: dict
+        :rtype: dict/None
         :return: The amount of read IO requests for a statement's execution.
         """
         return self._consumed_ios
@@ -51,7 +51,7 @@ class BufferedCursor:
         """
         Return a dictionary containing the total amount of processing time for a statement's execution.
 
-        :rtype: dict
+        :rtype: dict/None
         :return: The amount of processing time in milliseconds for a statement's execution.
         """
         return self._timing_information

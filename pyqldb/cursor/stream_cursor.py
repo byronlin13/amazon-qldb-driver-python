@@ -80,19 +80,23 @@ class StreamCursor:
         """
         Return a dictionary containing the accumulated amount of IO requests for a statement's execution.
 
-        :rtype: dict
+        :rtype: dict/None
         :return: The amount of read IO requests for a statement's execution.
         """
-        return {'ReadIOs': self._read_ios}
+        if self._read_ios is not None:
+            return {'ReadIOs': self._read_ios}
+        return None
 
     def get_timing_information(self):
         """
         Return a dictionary containing the accumulated amount of processing time for a statement's execution.
 
-        :rtype: dict
+        :rtype: dict/None
         :return: The amount of processing time in milliseconds for a statement's execution.
         """
-        return {'ProcessingTimeMilliseconds': self._processing_time_milliseconds}
+        if self._processing_time_milliseconds is not None:
+            return {'ProcessingTimeMilliseconds': self._processing_time_milliseconds}
+        return None
 
     def _are_there_more_results(self):
         """
